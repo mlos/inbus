@@ -1,0 +1,10 @@
+{   
+    "version" : 1 , 
+    "opcode" : 99,
+    "app-key" : "buttonchecker",
+    "app-type" : 0,
+    "address" : [ "127.0.0.1", 3456 ],
+    "payload" : "ETCETERA"
+}
+
+
