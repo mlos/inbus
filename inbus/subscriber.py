@@ -8,4 +8,4 @@ class Subscriber(object):
         return self._create_new_subscription
             
     def want_to_unsubscribe(self):
-        return not want_to_subscribe()
+        return not self.want_to_subscribe()
