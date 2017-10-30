@@ -1,7 +1,7 @@
 import socket
 import json
 
-from inbus_message import InbusMessage
+from incoming_message import IncomingMessage
 
 # Listen to incoming INBUS messages
 
@@ -18,16 +18,19 @@ while True:
     data, addr = sock.recvfrom(65536) # buffer size is 1024 bytes
     inbus_message = None
     try:
-        inbus_message = InbusMessage(data)
+        inbus_message = IncomingMessage(data)
     except:
-        print "Cannot create InbusMessage"
+        print "Cannot parse IncomingMessage"
      
-    if inbus_message.is_subscriber():
+    subscriber = incoming_message.to_subscriber():
+    if subscriber:
         print "subscribing ", addr
-    elif inbus_message.is_publisher():
-        print "publishing"
-        mysock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        for i in clients:
-            mysock.sendto("SERVER", addr)
-        print "DONE"
+    else:
+        publisher = incoming_message.to_publisher():
+        if publisher:
+            print "publishing"
+            mysock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            for i in clients:
+                mysock.sendto("SERVER", addr)
+    print "DONE"
             

@@ -1,21 +1,18 @@
 InbusMessage
 
 Broadcaster
-    receiveSubscriber(Subscriber)
-    receive(Publisher)
+    manage(Subscriber)
+    broadcast(Publisher)
 
 InbusMessage
     ctor(udp-message)
-    isSubscriber()
+    isFromSubscriber()
         returns null or Subscriber
-    isPublisher() 
+    isFromPublisher() 
         returns null or Publisher
 
 InbusMessage uses BroadCaster
     uses SubscriberRegistry
-
-Subscriber isA InbusMessage
-Publisher isA InbusMessage
 
 addr, mesg = Udp.receive(bufSize)
 Broadcaster.process(InbusMessage(mesg))
@@ -23,27 +20,27 @@ Broadcaster.process(InbusMessage(mesg))
 
 class InbusMessage
     bool isPubliser
-    bool isSubscriber
+    bool isFromSubscriber
 
 class Broadcaster
     
     process(inbusMesg)
-        if inbusMesg.isSubscriber()
+        if inbusMesg.isFromSubscriber()
             subscriber = new Subscriber(inbusMesg)
             if subscriber.wantsToSubscribe()
                 add to list
             elif subscriber.wantsToUnsubscribe()
                 remove from list
-        publisher = inbusMsg.isPublisher()
+        publisher = inbusMsg.isFromPublisher()
         if publisher
             for s is all Subscribers in list
                s.publish(publisher) 
             
     
 forever
-    if inbusMesg.isSubscriber()
+    if inbusMesg.isFromSubscriber()
         subscriber = new Subscriber(inbusMesg)
-        broadcaster.receiveSubscriber(subscriber)
-    elif inbusMesg.isPublisher()
-        broadcaster.receivePublisher(new Publisher(inbusMesg))
+        broadcaster.manage(subscriber)
+    elif inbusMesg.isFromPublisher()
+        broadcaster.broadcast(new Publisher(inbusMesg))
 

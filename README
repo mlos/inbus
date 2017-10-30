@@ -4,9 +4,7 @@ The INcredible message BUS
 	Small devices with a limited number of applications exchanging small
 	messages.
 
-- Single broker, UDP
-
-- Max message size 1024 bytes
+- Central broker, UDP
 
 - Message Protocol
 	JSON
