@@ -9,7 +9,7 @@ class IncomingMessage(object):
     OPCODE_UNSUBSCRIBE = 2
     OPCODE_PUBLISH = 3
     
-    def __init__(self, data):
+    def __init__(self, data, sender):
         try:
             message = json.loads(data)
         except:
@@ -19,14 +19,15 @@ class IncomingMessage(object):
             self._version = message["version"]
             self._opcode = message["opcode"]
             self._application = message["application"]
-            self._sender_address = message["address"]
-            self._payload = message["payload"]
         except:
             raise ValueError
+        
+        self._sender_address = sender
+
 
     def to_subscriber(self):
         if self._opcode in (self.OPCODE_SUBSCRIBE, self.OPCODE_UNSUBSCRIBE):
-            return Subscriber(self._opcode == self.OPCODE_SUBSCRIBE, self._application[0])
+            return Subscriber(self._opcode == self.OPCODE_SUBSCRIBE, self._sender_address, self._application[0])
         else:
             return None
             
