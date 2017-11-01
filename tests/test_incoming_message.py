@@ -37,13 +37,28 @@ def test_incoming_message_full():
     assert ic._payload == "ETCETERA"
 
 
-def test_incoming_message_subscriber():
+def test_incoming_message_subscriber_subs():
     ic = IncomingMessage('{ "version" : 1'
                         ', "opcode" : 1'
                         ', "application" : [ "app-key", 0 ]'
                         ', "address" : [ "127.0.0.1", 3456 ]'
                         ', "payload" : "ETCETERA" }')
-    assert isinstance(ic.to_subscriber(), Subscriber)
     assert ic.to_publisher() == None
-    
+    subs = ic.to_subscriber()
+    assert isinstance(subs, Subscriber)
+    assert subs.want_to_subscribe() 
+    assert not subs.want_to_unsubscribe()
+
+
+def test_incoming_message_subscriber_unsubs():
+    ic = IncomingMessage('{ "version" : 1'
+                        ', "opcode" : 2'
+                        ', "application" : [ "app-key", 0 ]'
+                        ', "address" : [ "127.0.0.1", 3456 ]'
+                        ', "payload" : "ETCETERA" }')
+    assert ic.to_publisher() == None
+    subs = ic.to_subscriber()
+    assert isinstance(subs, Subscriber)
+    assert not subs.want_to_subscribe() 
+    assert subs.want_to_unsubscribe()
 
