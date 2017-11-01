@@ -1,6 +1,7 @@
 import socket
 import json
 
+from broadcaster import Broadcaster
 from incoming_message import IncomingMessage
 
 # Listen to incoming INBUS messages
@@ -13,22 +14,24 @@ sock.bind((UDP_IP, UDP_PORT))
 
 clients = []
 
+bc = Broadcaster()
 
 while True:
     data, addr = sock.recvfrom(65536) # buffer size is 1024 bytes
-    inbus_message = None
+    incoming_message = None
     try:
-        inbus_message = IncomingMessage(data)
+        incoming_message = IncomingMessage(data, addr)
     except:
         print "Cannot parse IncomingMessage"
+        continue;
      
-    subscriber = incoming_message.to_subscriber():
+    subscriber = incoming_message.to_subscriber()
     if subscriber:
-        print "subscribing ", addr
+        bc.manage_subscriber(subscriber)
     else:
-        publisher = incoming_message.to_publisher():
+        publisher = incoming_message.to_publisher()
         if publisher:
-            print "publishing"
+            bc.broadcast_publiser(publisher)
             mysock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             for i in clients:
                 mysock.sendto("SERVER", addr)
