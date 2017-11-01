@@ -26,9 +26,9 @@ The INcredible message BUS
 { "version" : VERSION, 
 
 - Subscribe message
-	1 | 1 | super-app | 2 | 192.168.1.10 | 1234 | ""
+	1 | 1 | super-app | 2 | "IP" | 0 | ""
 
-	Subscribe myself to messages from super-app of type 2. Send them to 192.168.1.10, port 1234.
+	Subscribe myself to messages from super-app of type 2. IP and port are ignored.
 
 - Unsubscribe message
 	1 | 2 | super-app | 2 | 192.168.1.10 | 1234 | ""
