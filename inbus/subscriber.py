@@ -11,5 +11,8 @@ class Subscriber(object):
     def want_to_unsubscribe(self):
         return not self.want_to_subscribe()
 
-    def id(self):
+    def address(self):
         return self._address
+
+    def application_interest(self):
+        return self_app_key
