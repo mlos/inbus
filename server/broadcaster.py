@@ -14,4 +14,4 @@ class Broadcaster(object):
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         addresses = [s.address() for s in self._subscribers if s.application_interest() == publisher.application()]
         for addr in addresses:
-            mysock.sendto("SERVER", addr)
+            sock.sendto(publish.to_outgoing_message(), addr)

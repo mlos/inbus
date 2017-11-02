@@ -32,8 +32,8 @@ while True:
         publisher = incoming_message.to_publisher()
         if publisher:
             bc.broadcast_publiser(publisher)
-            mysock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             for i in clients:
-                mysock.sendto("SERVER", addr)
+                sock.sendto("SERVER", addr)
     print "DONE"
             
