@@ -48,4 +48,4 @@ def test_broadcaster_manage_subscriber_sub_all_unsub_but_one():
     assert len(bc._subscribers) == 6
     bc.manage_subscriber(Subscriber(False, ("",0), ""))
     assert len(bc._subscribers) == 1
-    assert bc._subscribers[0].id() == ("",11)
+    assert bc._subscribers[0].address() == ("",11)
