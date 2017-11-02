@@ -15,4 +15,4 @@ class Subscriber(object):
         return self._address
 
     def application_interest(self):
-        return self_app_key
+        return self._app_key

@@ -19,21 +19,21 @@ bc = Broadcaster()
 while True:
     data, addr = sock.recvfrom(65536) # buffer size is 1024 bytes
     incoming_message = None
-    try:
-        incoming_message = IncomingMessage(data, addr)
-    except:
-        print "Cannot parse IncomingMessage"
-        continue;
-     
+
+    #try:
+    incoming_message = IncomingMessage(data)
+    #except:
+    #    print "Cannot parse IncomingMessage"
+    #    continue;
+
     subscriber = incoming_message.to_subscriber()
     if subscriber:
+        print "SUB"
         bc.manage_subscriber(subscriber)
     else:
         publisher = incoming_message.to_publisher()
+        print "PUB"
         if publisher:
-            bc.broadcast_publiser(publisher)
-            sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            for i in clients:
-                sock.sendto("SERVER", addr)
+            bc.broadcast_publisher(publisher)
     print "DONE"
             
