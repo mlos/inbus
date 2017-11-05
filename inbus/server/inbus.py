@@ -5,7 +5,7 @@ from incoming_message import IncomingMessage
 
 class Inbus(object):
 
-    def __init__(self, address=(127.0.0.1, 7222), buffer_size=65536):
+    def __init__(self, address=("127.0.0.1", 7222), buffer_size=65536):
         self._address = address
         self._buffer_size = buffer_size
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -14,7 +14,11 @@ class Inbus(object):
 
     def run(self):
         while True:
-            self._listen_and_process_message()
+            try:
+                self._listen_and_process_message()
+            except:
+                pass
+            print "NEXT"
 
 
     def _listen_and_process_message(self):
@@ -24,9 +28,7 @@ class Inbus(object):
         try:
             incoming_message = IncomingMessage(data)
         except:
-            continue;
-
-        print "A"
+            raise
 
         subscriber = incoming_message.to_subscriber()
         if subscriber:

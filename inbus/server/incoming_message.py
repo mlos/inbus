@@ -1,6 +1,8 @@
 import json
 
-from shared.opcode import Opcode
+import sys
+
+from ..shared.opcode import Opcode
 from subscriber import Subscriber
 from publisher import Publisher
 
