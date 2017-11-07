@@ -1,6 +1,5 @@
 sudo: false
 language: python
-cache: pip
 
 matrix:
     include:
