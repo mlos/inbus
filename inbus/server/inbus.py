@@ -1,7 +1,13 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# Copyright (c) 2017 Maarten Los
+# See LICENSE.rst for details.
+
 import socket
 
 from broadcaster import Broadcaster
 from incoming_message import IncomingMessage
+
 
 class Inbus(object):
 
@@ -16,9 +22,10 @@ class Inbus(object):
         while True:
             try:
                 self._listen_and_process_message()
-            except:
-                pass
-
+            except socket.error:
+                pass  # TODO log mechanism
+            except ValueError:
+                pass  # TODO log mechanism
 
     def _listen_and_process_message(self):
         data, addr = self._socket.recvfrom(self._buffer_size)
@@ -26,8 +33,7 @@ class Inbus(object):
 
         try:
             incoming_message = IncomingMessage(data)
-        except:
-            print "incoming message err"
+        except ValueError:
             raise
 
         subscriber = incoming_message.to_subscriber()

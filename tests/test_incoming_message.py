@@ -4,12 +4,13 @@
 # See LICENSE.rst for details.
 
 """
-Tests for the :py:class:`inbus.incoming_message` class 
+Tests for the :py:class:`inbus.incoming_message` class
 """
 
 import pytest
 from incoming_message import IncomingMessage
 from subscriber import Subscriber
+
 
 def test_incoming_message_none():
     with pytest.raises(ValueError):
@@ -25,10 +26,10 @@ def test_incoming_message_full():
     ip = "123.4.1.3"
     port = 1244
     ic = IncomingMessage('{ "version" : 1'
-                        ', "opcode" : 99'
-                        ', "application" : [ "app-key", 0 ]'
-                        ', "address" : [ "' + ip + '", ' + str(port) + ']'
-                        ', "payload" : "ETCETERA" }')
+                         ', "opcode" : 99'
+                         ', "application" : [ "app-key", 0 ]'
+                         ', "address" : [ "' + ip + '", ' + str(port) + ']'
+                         ', "payload" : "ETCETERA" }')
     assert ic._version == 1
     assert ic._opcode == 99
     assert ic._application[0] == "app-key"
@@ -40,26 +41,25 @@ def test_incoming_message_full():
 
 def test_incoming_message_subscriber_subs():
     ic = IncomingMessage('{ "version" : 1'
-                        ', "opcode" : 1'
-                        ', "application" : [ "app-key", 0 ]'
-                        ', "address" : [ "127.0.0.1", 3456 ]'
-                        ', "payload" : "ETCETERA" }')
-    assert ic.to_publisher() == None
+                         ', "opcode" : 1'
+                         ', "application" : [ "app-key", 0 ]'
+                         ', "address" : [ "127.0.0.1", 3456 ]'
+                         ', "payload" : "ETCETERA" }')
+    assert ic.to_publisher() is None
     subs = ic.to_subscriber()
     assert isinstance(subs, Subscriber)
-    assert subs.want_to_subscribe() 
+    assert subs.want_to_subscribe()
     assert not subs.want_to_unsubscribe()
 
 
 def test_incoming_message_subscriber_unsubs():
     ic = IncomingMessage('{ "version" : 1'
-                        ', "opcode" : 2'
-                        ', "application" : [ "app-key", 0 ]'
-                        ', "address" : [ "127.0.0.1", 3456 ]'
-                        ', "payload" : "ETCETERA" }')
-    assert ic.to_publisher() == None
+                         ', "opcode" : 2'
+                         ', "application" : [ "app-key", 0 ]'
+                         ', "address" : [ "127.0.0.1", 3456 ]'
+                         ', "payload" : "ETCETERA" }')
+    assert ic.to_publisher() is None
     subs = ic.to_subscriber()
     assert isinstance(subs, Subscriber)
-    assert not subs.want_to_subscribe() 
+    assert not subs.want_to_subscribe()
     assert subs.want_to_unsubscribe()
-

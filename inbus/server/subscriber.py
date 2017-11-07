@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# Copyright (c) 2017 Maarten Los
+# See LICENSE.rst for details.
+
+
 class Subscriber(object):
 
     def __init__(self, is_new_subscriber, address, app_key):
@@ -7,7 +13,7 @@ class Subscriber(object):
 
     def want_to_subscribe(self):
         return self._is_new_subscriber
-            
+
     def want_to_unsubscribe(self):
         return not self.want_to_subscribe()
 
