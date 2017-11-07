@@ -17,13 +17,13 @@ class Subscriber(object):
     def __enter__(self):
         # Register ourselves
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.sendto(self._to_outgoing_message(Opcode.SUBSCRIBE), server_address)
+        sock.sendto(self._to_outgoing_message(Opcode.SUBSCRIBE), self._server_address)
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         # Deregister
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.sendto(self._to_outgoing_message(Opcode.UNSUBSCRIBE), server_address)
+        sock.sendto(self._to_outgoing_message(Opcode.UNSUBSCRIBE), self._server_address)
         
 
     def _to_outgoing_message(self, opcode):
