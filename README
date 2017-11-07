@@ -4,7 +4,11 @@ The INcredible message BUS
 	Small devices with a limited number of applications exchanging small
 	messages.
 
-- Central broker, UDP
+- Does not try to do more than one thing: broadcasting publisher to subscribers
+- Central broker
+- Connectionless  (UDP)
+- No flow control or session management 
+- Consequences: clients that do not unsubscribe gracefully will remain in the pool
 
 - Message Protocol
 	JSON

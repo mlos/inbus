@@ -18,7 +18,6 @@ class Inbus(object):
                 self._listen_and_process_message()
             except:
                 pass
-            print "NEXT"
 
 
     def _listen_and_process_message(self):
@@ -28,16 +27,17 @@ class Inbus(object):
         try:
             incoming_message = IncomingMessage(data)
         except:
+            print "incoming message err"
             raise
 
         subscriber = incoming_message.to_subscriber()
         if subscriber:
-            bc.manage_subscriber(subscriber)
+            self._broadcaster.manage_subscriber(subscriber)
             del subscriber
         else:
             publisher = incoming_message.to_publisher()
             if publisher:
-                bc.broadcast_publisher(publisher)
+                self._broadcaster.broadcast_publisher(publisher)
                 del publisher
 
         del incoming_message

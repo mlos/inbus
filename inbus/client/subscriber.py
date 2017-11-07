@@ -14,13 +14,20 @@ class Subscriber(object):
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self._socket.bind(self._client_address)
         
+    def __enter__(self):
         # Register ourselves
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.sendto(self._to_outgoing_message(), server_address)
+        sock.sendto(self._to_outgoing_message(Opcode.SUBSCRIBE), server_address)
+        return self
 
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        # Deregister
+        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        sock.sendto(self._to_outgoing_message(Opcode.UNSUBSCRIBE), server_address)
+        
 
-    def _to_outgoing_message(self):
-        return json.dumps({'version' : 1, 'opcode' : Opcode.SUBSCRIBE, "application" : [ self._app_key, 0 ], "address" : list(self._socket.getsockname())})
+    def _to_outgoing_message(self, opcode):
+        return json.dumps({'version' : 1, 'opcode' : opcode, "application" : [ self._app_key, 0 ], "address" : list(self._socket.getsockname())})
 
 
     def wait_for_published_message(self):

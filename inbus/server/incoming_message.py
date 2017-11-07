@@ -25,7 +25,6 @@ class IncomingMessage(object):
         self._is_subscriber = self._opcode in (Opcode.SUBSCRIBE, Opcode.UNSUBSCRIBE)
         self._is_publisher = self._opcode == Opcode.PUBLISH
          
-        print self._opcode
         if self._is_subscriber: 
             try:
                 self._sender_address = message["address"]
