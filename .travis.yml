@@ -15,3 +15,5 @@ matrix:
           env: TOXENV=py37
         - python: 3.5
           env: TOXENV=qa,do
+
+install:
