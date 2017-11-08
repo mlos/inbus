@@ -8,8 +8,8 @@ Tests for the :py:class:`inbus.incoming_message` class
 """
 
 import pytest
-from incoming_message import IncomingMessage
-from subscriber import Subscriber
+from inbus.server.incoming_message import IncomingMessage
+from inbus.server.subscriber import Subscriber
 
 
 def test_incoming_message_none():
@@ -27,16 +27,11 @@ def test_incoming_message_full():
     port = 1244
     ic = IncomingMessage('{ "version" : 1'
                          ', "opcode" : 99'
-                         ', "application" : [ "app-key", 0 ]'
-                         ', "address" : [ "' + ip + '", ' + str(port) + ']'
-                         ', "payload" : "ETCETERA" }')
+                         ', "application" : [ "app-key", 0 ] }')
     assert ic._version == 1
     assert ic._opcode == 99
     assert ic._application[0] == "app-key"
     assert ic._application[1] == 0
-    assert ic._sender_address[0] == ip
-    assert ic._sender_address[1] == port
-    assert ic._payload == "ETCETERA"
 
 
 def test_incoming_message_subscriber_subs():

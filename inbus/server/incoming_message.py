@@ -14,6 +14,9 @@ class IncomingMessage(object):
 
     def __init__(self, data):
 
+        if data is None:
+            raise ValueError
+
         try:
             message = json.loads(data)
         except ValueError:

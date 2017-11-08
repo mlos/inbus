@@ -7,8 +7,8 @@
 Tests for the :py:class:`inbus.broadcaster` class
 """
 
-from broadcaster import Broadcaster
-from subscriber import Subscriber
+from inbus.server.broadcaster import Broadcaster
+from inbus.server.subscriber import Subscriber
 
 
 def test_broadcaster_ctor():
