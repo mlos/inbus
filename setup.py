@@ -24,9 +24,7 @@ test_deps = [
     "pytest-cov"
 ]
 
-install_deps = [
-    'json'
-]
+install_deps = [ ]
 
 setup(
     name="inbus",
@@ -39,7 +37,6 @@ setup(
     keywords="message bus broker publisher subscriber pub sub",
     url="https://github.com/mlos/inbus",
     download_url="https://github.com/mlos/inbus/tarball/" + version,
-    namespace_packages=["inbus"],
     packages=["inbus"],
     install_requires=install_deps,
     setup_requires=pytest_runner,
