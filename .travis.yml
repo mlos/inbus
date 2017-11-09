@@ -17,7 +17,4 @@ matrix:
           env: TOXENV=qa,do
 
 install:
-    pip install .
-
-script:
-    pytest
+    pip install --ignore-installed --upgrade setuptools pip
