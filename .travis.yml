@@ -17,4 +17,4 @@ matrix:
           env: TOXENV=qa,do
 
 install:
-    pip install --ignore-installed --upgrade setuptools pip
+    pip install .

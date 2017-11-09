@@ -7,7 +7,6 @@
 Tests for the :py:class:`inbus.incoming_message` class
 """
 
-import pytest
 from inbus.server.incoming_message import IncomingMessage
 from inbus.server.subscriber import Subscriber
 

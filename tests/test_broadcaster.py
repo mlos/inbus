@@ -7,6 +7,8 @@
 Tests for the :py:class:`inbus.broadcaster` class
 """
 
+import pytest
+
 from inbus.server.broadcaster import Broadcaster
 from inbus.server.subscriber import Subscriber
 
