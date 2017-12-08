@@ -25,4 +25,5 @@ class Publisher(object):
         return json.dumps({'version': 1,
                            'opcode': Opcode.PUBLISH,
                            'application': [self._app_key, 0],
+                           'address': ['', 0],
                            'payload': payload})

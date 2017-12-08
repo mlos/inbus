@@ -1,3 +1,6 @@
+- Protocol RECOMMENDED default port: 7222
+
+
 - Message Protocol
 	JSON
 		version:	number

@@ -40,8 +40,22 @@ class Subscriber(object):
         return json.dumps({'version': 1,
                            'opcode': opcode,
                            'application': [self._app_key, 0],
-                           'address': list(self._socket.getsockname())})
+                           'address': list(self._socket.getsockname()),
+                           'payload': ''})
 
-    def wait_for_published_message(self):
+    def get_published_message(self):
         data, addr = self._socket.recvfrom(self._buffer_size)
-        return data  # TODO extract payload
+        try:
+            message = json.loads(data)
+        except ValueError:
+            return None
+        
+        try:
+            payload = message["payload"]
+        except KeyError:
+            return None
+
+        return payload
+
+    
+        

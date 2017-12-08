@@ -37,7 +37,7 @@ setup(
     keywords="message bus broker publisher subscriber pub sub",
     url="https://github.com/mlos/inbus",
     download_url="https://github.com/mlos/inbus/tarball/" + version,
-    packages=["inbus"],
+    packages=["inbus", "inbus.client", "inbus.server", "inbus.shared", "examples", "doc"],
     install_requires=install_deps,
     setup_requires=pytest_runner,
     tests_require=test_deps,

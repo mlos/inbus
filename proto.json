@@ -1,7 +1,7 @@
 {   
     "version" : 1 , 
     "opcode" : 99,
-    "application" : [ "app-key", 0 ]
+    "application" : [ "app-key", 0 ],
     "address" : [ "127.0.0.1", 3456 ],
     "payload" : "ETCETERA"
 }
