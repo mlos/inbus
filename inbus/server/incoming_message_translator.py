@@ -1,0 +1,52 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# Copyright (c) 2017 Maarten Los
+# See LICENSE.rst for details.
+
+import json
+import sys
+
+from ..shared.opcode import Opcode
+
+
+'''
+Translates raw Inbus messages to either a Subscribe, Unsubscribe or Publish
+method, and invokes those methods on its InbusMethodObservers
+'''
+class IncomingMessageTranslator(object):
+
+
+    def __init__(self, inbus_method_observers):
+        self._inbus_method_observers = inbus_method_observers
+
+
+    def translate(self, data):
+        if data is None:
+            raise ValueError
+
+        try:
+            message = json.loads(data)
+        except ValueError:
+            raise
+
+        try:
+            opcode = message["opcode"]
+            application = message["application"]
+            address = message["address"]
+            payload = message["payload"]
+        except KeyError:
+            raise ValueError
+
+        for i in self._inbus_method_observers:
+            try:
+                if opcode == Opcode.SUBSCRIBE:
+                    i.subscribe(address, application)
+                elif opcode == Opcode.UNSUBSCRIBE:
+                    i.unsubscribe(address, application)
+                elif opcode == Opcode.PUBLISH:
+                    i.publish(address, application, payload)
+            except AttributeError:
+                print sys.exc_info()
+                pass
+            except:
+                raise
