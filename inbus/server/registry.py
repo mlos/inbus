@@ -11,13 +11,13 @@ class Registry(InbusMethodObserver):
         self._subscriptions = []
 
     def subscribe(self, address, application):
-        print "S", address, application
-        self._subscriptions.append((address, application))
+        if (address, application) not in self._subscriptions:
+            self._subscriptions.append((address, application))
 
     def unsubscribe(self, address, application):
-        print "U", address, application
+        print [s[0] for s in self._subscriptions]
         self._subscriptions = [s for s in self._subscriptions
-            if address != subscription[0]]
+            if (address != s[0]) and (application != s[1])]
 
     def publish(self, address, application, payload):
         pass
