@@ -1,4 +1,6 @@
-- Protocol RECOMMENDED default port: 7222
+- Protocol SHOULD use port 7222
+- All messages MUST contain all elements, even if they are not used.
+- Unused elements SHOULD be empty or zero.
 
 
 - Message Protocol
@@ -17,6 +19,7 @@
 		ip-number: string
 		port-number: number
 		payload	string	(completely user defined)
+
 		
 { "version" : VERSION, 
 
