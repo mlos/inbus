@@ -17,8 +17,8 @@ class Inbus(object):
         registry = Registry()
         self._message_receiver = MessageReceiver(
             IncomingMessageTranslator(
-                [registry, 
-                 Broadcaster(registry, 
+                [registry,
+                 Broadcaster(registry,
                              MessageSender(OutgoingMessageTranslator()))
                 ]), address, buffer_size)
 
