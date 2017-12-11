@@ -17,6 +17,8 @@ class IncomingMessageTranslator(object):
 
 
     def __init__(self, inbus_method_observers):
+        if inbus_method_observers is None:
+            raise AttributeError
         self._inbus_method_observers = inbus_method_observers
 
 
@@ -38,15 +40,9 @@ class IncomingMessageTranslator(object):
             raise ValueError
 
         for i in self._inbus_method_observers:
-            try:
-                if opcode == Opcode.SUBSCRIBE:
-                    i.subscribe(address, application)
-                elif opcode == Opcode.UNSUBSCRIBE:
-                    i.unsubscribe(address, application)
-                elif opcode == Opcode.PUBLISH:
-                    i.publish(address, application, payload)
-            except AttributeError:
-                print sys.exc_info()
-                pass
-            except:
-                raise
+            if opcode == Opcode.SUBSCRIBE:
+                i.subscribe(address, application)
+            elif opcode == Opcode.UNSUBSCRIBE:
+                i.unsubscribe(address, application)
+            elif opcode == Opcode.PUBLISH:
+                i.publish(address, application, payload)
