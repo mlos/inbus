@@ -32,4 +32,4 @@ def test_inbus_method_observer_methods_are_abstract():
         a.unsubscribe(None, None)
 
     with pytest.raises(NotImplementedError):
-        a.publish(None, None, None)
+        a.publish(None, None)

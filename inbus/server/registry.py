@@ -19,7 +19,7 @@ class Registry(InbusMethodObserver):
         self._subscriptions = [s for s in self._subscriptions
             if (address != s[0]) and (application != s[1])]
 
-    def publish(self, address, application, payload):
+    def publish(self, application, payload):
         pass
 
     def subscribers(self):

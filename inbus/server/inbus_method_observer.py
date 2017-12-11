@@ -21,6 +21,6 @@ class InbusMethodObserver(object):
     def unsubscribe(self, address, application):
         raise NotImplementedError
 
-    def publish(self, address, application, payload):
+    def publish(self, application, payload):
         raise NotImplementedError
 

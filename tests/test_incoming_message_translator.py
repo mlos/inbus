@@ -14,22 +14,6 @@ from inbus.shared.opcode import Opcode
 from inbus.server.incoming_message_translator import IncomingMessageTranslator
 from inbus.server.inbus_method_observer import InbusMethodObserver
 
-class MockInbusMethodObserver(InbusMethodObserver):
-    def __init__(self):
-        pass
-
-
-    def subscribe(self, address, application):
-        pass
-
-
-    def unsubscribe(self, address, application):
-        pass
-
-
-    def publish(self, address, application, payload):
-        pass
-
 
 def test_incoming_message_translator_without_method_observer_should_raise_error():
     with pytest.raises(AttributeError):

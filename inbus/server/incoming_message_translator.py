@@ -45,4 +45,4 @@ class IncomingMessageTranslator(object):
             elif opcode == Opcode.UNSUBSCRIBE:
                 i.unsubscribe(address, application)
             elif opcode == Opcode.PUBLISH:
-                i.publish(address, application, payload)
+                i.publish(application, payload)
