@@ -15,7 +15,6 @@ class Registry(InbusMethodObserver):
             self._subscriptions.append((address, application))
 
     def unsubscribe(self, address, application):
-        print [s[0] for s in self._subscriptions]
         self._subscriptions = [s for s in self._subscriptions
             if (address != s[0]) and (application != s[1])]
 
