@@ -6,6 +6,9 @@ Inbus
 .. image:: https://travis-ci.org/mlos/inbus.svg?branch=master
    :target: https://travis-ci.org/mlos/inbus
 
+.. image:: https://codecov.io/gh/mlos/inbus/branch/master/graph/badge.svg
+  :target: https://codecov.io/gh/mlos/inbus
+
 
 **inbus** stands for INconnu message BUS and is targeted at small
 devices running a limited number of applications exchanging small
