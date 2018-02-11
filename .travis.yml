@@ -17,4 +17,7 @@ matrix:
           env: TOXENV=qa,do
 
 install:
-    pip install .
+    - pip install tox
+
+script:
+    - tox
