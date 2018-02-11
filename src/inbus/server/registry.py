@@ -3,7 +3,7 @@
 # Copyright (c) 2017 Maarten Los
 # See LICENSE.rst for details.
 
-from inbus_method_observer import InbusMethodObserver
+from .inbus_method_observer import InbusMethodObserver
 
 class Registry(InbusMethodObserver):
 
