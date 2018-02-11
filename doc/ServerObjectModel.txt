@@ -1,3 +1,9 @@
+The project is a first attempt to explore the thoughts presented in 
+Object Thinking, by David West, Microsoft Press, 2004 (ISBN 978-0735619654)
+
+This section describes the objects in the system, their responsibility, 
+collaborators, as well as their methods.
+
 MessageReceiver
 ---------------
 Responsibilities:
