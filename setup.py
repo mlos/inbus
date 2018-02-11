@@ -13,7 +13,6 @@ NAME="inbus"
 KEYWORDS= ["message bus broker publisher subscriber pub sub"]
 META_PATH = os.path.join("src", "inbus", "__init__.py")
 PACKAGES = find_packages(where="src")
-print PACKAGES
 CLASSIFIERS=[
         "License :: OSI Approved :: BSD License",
         "Development Status :: 5 - Production/Stable",
