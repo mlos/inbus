@@ -2,57 +2,19 @@
 # -*- coding: utf-8 -*-
 
 import os
+import codecs
+import re
 import sys
 from io import open
-from setuptools import setup
+from setuptools import setup, find_packages
 
-
-def read_file(fname, encoding='utf-8'):
-    with open(os.path.join(os.path.dirname(__file__), fname), encoding=encoding) as r:
-        return r.read()
-
-
-README = read_file("README.rst")
-CHANGES = read_file("CHANGES.rst")
-version = read_file("VERSION.txt").strip()
-
-needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
-pytest_runner = ['pytest-runner'] if needs_pytest else []
-test_deps = [
-    'mock;python_version<"3.3"',
-    "pytest>=3.1",
-    "pytest-cov"
-]
-
-install_deps = [ ]
-
-setup(
-    name="inbus",
-    version=version,
-    author="Maarten Los",
-    author_email="mlos@gmx.com",
-    description=("Simple, UDP-based message bus"),
-    long_description="\n\n".join([README, CHANGES]),
-    license="BSD 2-Clause license",
-    keywords="message bus broker publisher subscriber pub sub",
-    url="https://github.com/mlos/inbus",
-    download_url="https://github.com/mlos/inbus/tarball/" + version,
-    packages=["inbus", "inbus.client", "inbus.server", "inbus.shared", "examples", "doc"],
-    install_requires=install_deps,
-    setup_requires=pytest_runner,
-    tests_require=test_deps,
-    extras_require={
-        'docs': [
-            'sphinx>=1.5.1'
-        ],
-        'test': test_deps,
-        'qa': [
-            'flake8',
-            'rstcheck'
-        ]
-    },
-    zip_safe=False,
-    classifiers=[
+####################################################
+NAME="inbus"
+KEYWORDS= ["message bus broker publisher subscriber pub sub"]
+META_PATH = os.path.join("src", "inbus", "__init__.py")
+PACKAGES = find_packages(where="src")
+print PACKAGES
+CLASSIFIERS=[
         "License :: OSI Approved :: BSD License",
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Information Technology",
@@ -67,4 +29,68 @@ setup(
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6"
     ]
+####################################################
+HERE = os.path.abspath(os.path.dirname(__file__))
+
+def read(*parts):
+    """
+    Build an absolute path from *parts* and and return the contents of the
+    resulting file.  Assume UTF-8 encoding.
+    """
+    with codecs.open(os.path.join(HERE, *parts), "rb", "utf-8") as f:
+        return f.read()
+
+META_FILE = read(META_PATH)
+
+def find_meta(meta):
+    """
+    Extract __*meta*__ from META_FILE.
+    """
+    meta_match = re.search(
+        r"^__{meta}__ = ['\"]([^'\"]*)['\"]".format(meta=meta),
+        META_FILE, re.M
+    )
+    if meta_match:
+        return meta_match.group(1)
+    raise RuntimeError("Unable to find __{meta}__ string.".format(meta=meta))
+
+
+needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
+pytest_runner = ['pytest-runner'] if needs_pytest else []
+test_deps = [
+    'mock;python_version<"3.3"',
+    "pytest>=3.1",
+    "pytest-cov"
+]
+
+install_deps = [ ]
+
+setup(
+    name=NAME,
+    version=find_meta("version"),
+    author=find_meta("author"),
+    author_email=find_meta("email"),
+    description=find_meta("description"),
+    long_description=read("README.rst"),
+    license=find_meta("license"),
+    keywords=KEYWORDS,
+    url=find_meta("uri"),
+    download_url="https://github.com/mlos/inbus/tarball/" + find_meta("version"),
+    packages=PACKAGES,
+    package_dir={"": "src"},
+    install_requires=install_deps,
+    setup_requires=pytest_runner,
+    tests_require=test_deps,
+    extras_require={
+        'docs': [
+            'sphinx>=1.5.1'
+        ],
+        'test': test_deps,
+        'qa': [
+            'flake8',
+            'rstcheck'
+        ]
+    },
+    zip_safe=False,
+    classifiers=CLASSIFIERS
 )
