@@ -6,6 +6,9 @@
 import socket
 
 
+'''
+Sends a raw Inbus network message to the network
+'''
 class MessageSender(object):
 
     def __init__(self, outgoing_message_translator):

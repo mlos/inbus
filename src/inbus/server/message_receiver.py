@@ -5,6 +5,10 @@
 
 import socket
 
+'''
+Waits for raw Inbus network messages
+and passes them to the MessageTranslator
+'''
 class MessageReceiver(object):
 
     def __init__(self, incoming_message_translator, address, buffer_size=65536):

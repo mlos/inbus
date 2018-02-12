@@ -5,6 +5,9 @@
 
 from .inbus_method_observer import InbusMethodObserver
 
+'''
+Manages a list of subscribers
+'''
 class Registry(InbusMethodObserver):
 
     def __init__(self):

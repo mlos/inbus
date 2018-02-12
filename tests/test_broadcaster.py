@@ -16,7 +16,7 @@ def test_broadcaster_without_registry_should_raise_error():
         Broadcaster(None, 1)
 
 
-def test_broadcaster_without_message_sender():
+def test_broadcaster_without_message_sender_should_raise_error():
     with pytest.raises(AttributeError):
         Broadcaster(1, None)
 
@@ -31,4 +31,18 @@ def test_broadcaster_with_two_subscribers_for_app_should_call_send_twice(mock_re
 
     mock_sender.send.assert_called()
     assert mock_sender.send.call_count == 2
+
+
+@patch("inbus.server.registry.Registry")
+@patch("inbus.server.message_sender.MessageSender")
+def test_broadcaster_subscribe_method_should_not_raise_error(mock_registry, mock_sender):
+    b = Broadcaster(mock_registry, mock_sender)
+    b.subscribe("dummy-address", "dummy-app")
+
+
+@patch("inbus.server.registry.Registry")
+@patch("inbus.server.message_sender.MessageSender")
+def test_broadcaster_unsubscribe_method_should_not_raise_error(mock_registry, mock_sender):
+    b = Broadcaster(mock_registry, mock_sender)
+    b.unsubscribe("dummy-address", "dummy-app")
 

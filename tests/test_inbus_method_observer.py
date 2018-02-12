@@ -11,10 +11,6 @@ import pytest
 
 from inbus.server.inbus_method_observer import InbusMethodObserver
 
-class Abstract(InbusMethodObserver):
-    def __init__(self):
-        pass
-
 def test_inbus_method_observer_ctor():
     with pytest.raises(NotImplementedError):
         InbusMethodObserver()

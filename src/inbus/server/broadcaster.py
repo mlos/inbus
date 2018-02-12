@@ -3,8 +3,12 @@
 # Copyright (c) 2017 Maarten Los
 # See LICENSE.rst for details.
 
+from .inbus_method_observer import InbusMethodObserver
 
-class Broadcaster(object):
+'''
+Broadcasts Publications to a list of Subscribers
+'''
+class Broadcaster(InbusMethodObserver):
 
     def __init__(self, registry, message_sender):
         if registry is None:

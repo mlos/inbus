@@ -9,6 +9,9 @@ from ..shared.defaults import Defaults
 from ..shared.opcode import Opcode
 
 
+'''
+Translate the publish method into a raw Inbus network message
+'''
 class OutgoingMessageTranslator(object):
 
     def __init__(self):
