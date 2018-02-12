@@ -19,11 +19,21 @@ def test_incoming_message_translator_without_method_observer_should_raise_error(
     with pytest.raises(AttributeError):
         IncomingMessageTranslator(None)
 
+@patch("inbus.server.inbus_method_observer.InbusMethodObserver")
+def test_incoming_message_translator_translating_empty_data_should_raise_error(mock_observer):
+    i = IncomingMessageTranslator([mock_observer])
+    with pytest.raises(ValueError):
+        i.translate(None)
+
+@patch("inbus.server.inbus_method_observer.InbusMethodObserver")
+def test_incoming_message_translator_translating_incorrect_json_should_raise_error(mock_observer):
+    i = IncomingMessageTranslator([mock_observer])
+    with pytest.raises(BaseException):
+        i.translate("this aint't JSON")
 
 @patch("inbus.server.inbus_method_observer.InbusMethodObserver")
 def test_incoming_message_translator_subscription_should_send_subscribe_message(mock_observer):
     i = IncomingMessageTranslator([mock_observer])
-    mock_observer.subscribe
     i.translate(_create_json_message(Opcode.SUBSCRIBE))
     mock_observer.subscribe.assert_called()
 
@@ -31,7 +41,6 @@ def test_incoming_message_translator_subscription_should_send_subscribe_message(
 @patch("inbus.server.inbus_method_observer.InbusMethodObserver")
 def test_incoming_message_translator_cancellation_should_send_unsubscribe_message(mock_observer):
     i = IncomingMessageTranslator([mock_observer])
-    mock_observer.unsubscribe
     i.translate(_create_json_message(Opcode.UNSUBSCRIBE))
     mock_observer.unsubscribe.assert_called()
 
@@ -39,7 +48,6 @@ def test_incoming_message_translator_cancellation_should_send_unsubscribe_messag
 @patch("inbus.server.inbus_method_observer.InbusMethodObserver")
 def test_incoming_message_translator_publication_should_send_publish_message(mock_observer):
     i = IncomingMessageTranslator([mock_observer])
-    mock_observer.publish
     i.translate(_create_json_message(Opcode.PUBLISH))
     mock_observer.publish.assert_called()
 
