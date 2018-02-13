@@ -12,6 +12,8 @@ from ..shared.opcode import Opcode
 '''
 Translates raw Inbus messages to either a Subscribe, Unsubscribe or Publish
 method, and invokes those methods on its InbusMethodObservers
+
+Forms the bridge between the OO world and the outside world.
 '''
 class IncomingMessageTranslator(object):
 

@@ -51,7 +51,42 @@ def test_incoming_message_translator_publication_should_send_publish_message(moc
     i.translate(_create_json_message(Opcode.PUBLISH))
     mock_observer.publish.assert_called()
 
-    
+@patch("inbus.server.inbus_method_observer.InbusMethodObserver")
+def test_incoming_message_translator_json_message_without_opcode_key_should_raise_error(mock_observer):
+    i = IncomingMessageTranslator([mock_observer])
+    with pytest.raises(ValueError):
+        i.translate(json.dumps({'version': 1,
+                       'application': ['myapp-key', 0],
+                       'address': ['my-address', 0],
+                       'payload': 'my-payload'}))
+
+@patch("inbus.server.inbus_method_observer.InbusMethodObserver")
+def test_incoming_message_translator_json_message_without_application_key_should_raise_error(mock_observer):
+    i = IncomingMessageTranslator([mock_observer])
+    with pytest.raises(ValueError):
+        i.translate(json.dumps({'version': 1,
+                       'opcode': Opcode.PUBLISH,
+                       'address': ['my-address', 0],
+                       'payload': 'my-payload'}))
+
+@patch("inbus.server.inbus_method_observer.InbusMethodObserver")
+def test_incoming_message_translator_json_message_without_address_key_should_raise_error(mock_observer):
+    i = IncomingMessageTranslator([mock_observer])
+    with pytest.raises(ValueError):
+        i.translate(json.dumps({'version': 1,
+                       'opcode': Opcode.PUBLISH,
+                       'application': ['myapp-key', 0],
+                       'payload': 'my-payload'}))
+
+@patch("inbus.server.inbus_method_observer.InbusMethodObserver")
+def test_incoming_message_translator_json_message_without_payload_key_should_raise_error(mock_observer):
+    i = IncomingMessageTranslator([mock_observer])
+    with pytest.raises(ValueError):
+        i.translate(json.dumps({'version': 1,
+                       'opcode': Opcode.PUBLISH,
+                       'application': ['myapp-key', 0],
+                       'address': ['my-address', 0] }))
+
 def _create_json_message(opcode):
     return json.dumps({'version': 1,
                        'opcode': opcode,
