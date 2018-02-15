@@ -1,4 +1,4 @@
-Copyright (c) 2017 Maarten Los
+Copyright (c) 2017, 2018 Maarten Los
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
