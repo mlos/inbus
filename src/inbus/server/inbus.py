@@ -3,6 +3,7 @@
 # Copyright (c) 2017 Maarten Los
 # See LICENSE.rst for details.
 
+import socket
 from registry import Registry
 from message_receiver import MessageReceiver
 from incoming_message_translator import IncomingMessageTranslator
@@ -20,7 +21,7 @@ class Inbus(object):
             IncomingMessageTranslator(
                 [registry,
                  Broadcaster(registry,
-                             MessageSender(OutgoingMessageTranslator()))
+                             MessageSender(OutgoingMessageTranslator(), sock))
                 ]), address, buffer_size)
 
     def run(self):
