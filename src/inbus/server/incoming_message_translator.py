@@ -4,25 +4,21 @@
 # See LICENSE.rst for details.
 
 import json
-import sys
 
 from ..shared.opcode import Opcode
 
 
-'''
-Translates raw Inbus messages to either a Subscribe, Unsubscribe or Publish
-method, and invokes those methods on its InbusMethodObservers
-
-Forms the bridge between the OO world and the outside world.
-'''
 class IncomingMessageTranslator(object):
+    """
+    Translates raw Inbus messages to either a Subscribe, Unsubscribe or Publish
+    method, and invokes those methods on its InbusMethodObservers
 
-
+    Forms the bridge between the OO world and the outside world.
+    """
     def __init__(self, inbus_method_observers):
         if inbus_method_observers is None:
             raise AttributeError
         self._inbus_method_observers = inbus_method_observers
-
 
     def translate(self, data):
         if data is None:

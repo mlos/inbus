@@ -4,14 +4,13 @@
 # See LICENSE.rst for details.
 
 
-'''
-Classes implementing this interface should implement
-all methods, providing empty implementations for
-those method they do not support.
-Allows a client to call any inbus message on an observer.
-'''
 class InbusMethodObserver(object):
-
+    """
+    Classes implementing this interface should implement
+    all methods, providing empty implementations for
+    those method they do not support.
+    Allows a client to call any inbus message on an observer.
+    """
     def __init__(self):
         raise NotImplementedError
 
@@ -23,4 +22,3 @@ class InbusMethodObserver(object):
 
     def publish(self, application, payload):
         raise NotImplementedError
-

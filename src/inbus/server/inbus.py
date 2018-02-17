@@ -22,7 +22,7 @@ class Inbus(object):
                 [registry,
                  Broadcaster(registry,
                              MessageSender(OutgoingMessageTranslator(), sock))
-                ]), address, buffer_size)
+                 ]), address, buffer_size)
 
     def run(self):
         while True:

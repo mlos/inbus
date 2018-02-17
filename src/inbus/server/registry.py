@@ -5,11 +5,11 @@
 
 from .inbus_method_observer import InbusMethodObserver
 
-'''
-Manages a list of subscribers
-'''
-class Registry(InbusMethodObserver):
 
+class Registry(InbusMethodObserver):
+    """
+    Manages a list of subscribers
+    """
     def __init__(self):
         self._subscriptions = []
 
@@ -18,8 +18,10 @@ class Registry(InbusMethodObserver):
             self._subscriptions.append((address, application))
 
     def unsubscribe(self, address, application):
-        self._subscriptions = [s for s in self._subscriptions
-            if (address != s[0]) and (application != s[1])]
+        self._subscriptions = [
+                s for s in self._subscriptions
+                if (address != s[0]) and (application != s[1])
+                ]
 
     def publish(self, application, payload):
         pass

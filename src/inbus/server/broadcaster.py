@@ -5,11 +5,11 @@
 
 from .inbus_method_observer import InbusMethodObserver
 
-'''
-Broadcasts Publications to a list of Subscribers
-'''
-class Broadcaster(InbusMethodObserver):
 
+class Broadcaster(InbusMethodObserver):
+    """
+    Broadcasts Publications to a list of Subscribers
+    """
     def __init__(self, registry, message_sender):
         if registry is None:
             raise AttributeError
@@ -20,14 +20,11 @@ class Broadcaster(InbusMethodObserver):
         self._registry = registry
         self._message_sender = message_sender
 
-
     def subscribe(self, address, application):
         pass
 
-
     def unsubscribe(self, address, application):
         pass
-
 
     def publish(self, application, payload):
         subscribers = self._registry.subscribers()

@@ -5,16 +5,17 @@
 
 import socket
 
-'''
-Waits for raw Inbus network messages
-and passes them to the MessageTranslator
-'''
-class MessageReceiver(object):
 
-    def __init__(self, incoming_message_translator, address, buffer_size=65536):
+class MessageReceiver(object):
+    """
+    Waits for raw Inbus network messages
+    and passes them to the MessageTranslator
+    """
+    def __init__(self, incoming_message_translator, address,
+                 buffer_size=65536):
         if incoming_message_translator is None:
             raise AttributeError
-        
+
         if address is None:
             raise AttributeError
 
