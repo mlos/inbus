@@ -18,10 +18,7 @@ class OutgoingMessageTranslator(object):
         pass
 
     def translate(self, application, payload):
-        return "Bagger"
-        '''
         return json.dumps({'version': Defaults.INBUS_VERSION,
                            'opcode': Opcode.PUBLISH,
                            'application': application,
                            'payload': payload})
-        '''
