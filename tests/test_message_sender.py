@@ -37,8 +37,8 @@ def test_message_sender_send_should_call_translate_and_socket_send(mock_outgoing
 @patch("socket.socket")
 def test_message_sender_send_should_hide_socket_send_error(mock_outgoing_message_translator, mock_socket):
     ms = MessageSender(mock_outgoing_message_translator, mock_socket)
-    ms.send("some-address", "some-app", "some-payload")
     mock_socket.sendto.side_effect = socket.error
+    ms.send("some-address", "some-app", "some-payload")
 
 '''
 @patch("inbus.server.registry.Registry")
