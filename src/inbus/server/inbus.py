@@ -14,6 +14,7 @@ from outgoing_message_translator import OutgoingMessageTranslator
 class Inbus(object):
 
     def __init__(self, address=("127.0.0.1", 7222), buffer_size=65536):
+        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         registry = Registry()
         self._message_receiver = MessageReceiver(
             IncomingMessageTranslator(

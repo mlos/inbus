@@ -12,6 +12,12 @@ and passes them to the MessageTranslator
 class MessageReceiver(object):
 
     def __init__(self, incoming_message_translator, address, buffer_size=65536):
+        if incoming_message_translator is None:
+            raise AttributeError
+        
+        if address is None:
+            raise AttributeError
+
         self._incoming_message_translator = incoming_message_translator
         self._address = address
         self._buffer_size = buffer_size
