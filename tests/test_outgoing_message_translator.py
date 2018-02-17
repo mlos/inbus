@@ -21,7 +21,7 @@ def test_outgoing_message_translator_translate_returns_valid_json():
     passed = True
     try:
         message = json.loads(translated)
-    except ValueError:
+    except ValueError: # pragma: no cover
        passed = False
 
     assert passed is True
