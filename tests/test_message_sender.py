@@ -7,6 +7,7 @@
 Tests for the :py:class:`inbus.server.MessageSender` class
 """
 import pytest
+import socket
 
 from mock import patch, call
 from inbus.server.message_sender import MessageSender
@@ -30,6 +31,14 @@ def test_message_sender_send_should_call_translate_and_socket_send(mock_outgoing
     ms.send("some-address", "some-app", "some-payload")
     mock_outgoing_message_translator.translate.assert_called()
     mock_socket.sendto.assert_called()
+
+
+@patch("inbus.server.outgoing_message_translator.OutgoingMessageTranslator")
+@patch("socket.socket")
+def test_message_sender_send_should_hide_socket_send_error(mock_outgoing_message_translator, mock_socket):
+    ms = MessageSender(mock_outgoing_message_translator, mock_socket)
+    ms.send("some-address", "some-app", "some-payload")
+    mock_socket.sendto.side_effect = socket.error
 
 '''
 @patch("inbus.server.registry.Registry")
