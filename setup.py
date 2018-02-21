@@ -9,7 +9,7 @@ from io import open
 from setuptools import setup, find_packages
 
 ####################################################
-NAME="inbus"
+NAME="inbus-server"
 KEYWORDS= ["message bus broker publisher subscriber pub sub"]
 META_PATH = os.path.join("src", "inbus", "__init__.py")
 PACKAGES = find_packages(where="src")

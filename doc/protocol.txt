@@ -1,3 +1,5 @@
+This document describes the Inbus Protocol version 1.
+
 NOTE:
 Use of the words, must, should, could, etc. adheres to the best practice
 suggested in RFC2119 (https://www.ietf.org/rfc/rfc2119.txt)
@@ -19,7 +21,8 @@ Elements that do not apply to a particular type of message (as
 defined by its <opcode>), SHOULD be an empty string or zero,
 depending on the data type.
 
-<inbus-version> Integer specifying the Inbus version.
+<inbus-version> Integer specifying the Inbus protocol version.
+    MUST be 1.
 <opcode> Integer specifying the type of message
     0: reserved
     1: subscribe
@@ -28,12 +31,11 @@ depending on the data type.
     4-999: reserved
 <app-key> String identifying the application to which
     the message applies. 
-    The value "*" is reserved for future use.
+    The values "*" and "_inbus" are reserved for future use.
 <app-type> Integer, specifying an application defined 
     value. Can be used to distinguish multiple messages
     related to the same application.
     The element only applies to publish messages.
-    The value 0 is reserved for future use.
 <ip-number> String containing an IP number part of the
     subscriber address. In case of a publish message,
     the element does not apply.

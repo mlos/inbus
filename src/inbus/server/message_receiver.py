@@ -27,4 +27,5 @@ class MessageReceiver(object):
 
     def wait_and_process_message(self):
         data, addr = self._socket.recvfrom(self._buffer_size)
+        print data, addr
         self._incoming_message_translator.translate(data)

@@ -7,7 +7,6 @@ Inbus
 .. image:: https://codecov.io/gh/mlos/inbus/branch/master/graph/badge.svg
   :target: https://codecov.io/gh/mlos/inbus
 
-
 **inbus** stands for INconnu message BUS and is targeted at small
 devices running a limited number of applications exchanging small
 messages. It has a single goal: connectionless brokering of messages
