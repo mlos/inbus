@@ -2,7 +2,7 @@
 ``inbus`` : a simple message bus
 ================================
 
-Release v\ |release| (:doc:`What's new? <changelog>`).
+Release |release| (:doc:`What's new? <changelog>`).
 
 .. include:: ../README.rst
    :start-after: teaser-begin

@@ -13,7 +13,7 @@ Inbus
 
 .. teaser-begin
 
-**inbus** stands for INconnu message BUS and is targeted at small
+**inbus** stands for **in**\ connu message **bus** and is targeted at small
 devices running a limited number of applications exchanging small
 messages. It has a single goal: simple, connectionless brokering 
 of messages between one or more publishers and one or more 

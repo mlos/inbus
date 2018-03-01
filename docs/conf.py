@@ -13,8 +13,20 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 # import os
-# import sys
+import sys
+import re
 # sys.path.insert(0, os.path.abspath('.'))
+
+def find_version(fname):
+    with open(fname) as f:
+        content = f.read()
+    result = re.search(r"__version__(.*=.*)([0-9]+\.[0-9]+\.[0-9A-Za-z]+)", content)
+    try:
+        version = result.group(2)
+    except:
+        version = "?.?.?"
+    
+    return version
 
 
 # -- Project information -----------------------------------------------------
@@ -24,9 +36,9 @@ copyright = u'2018, Maarten Los'
 author = u'Maarten Los'
 
 # The short X.Y version
-version = u''
+version = find_version("../src/inbus/__init__.py")
 # The full version, including alpha/beta/rc tags
-release = u''
+release = version
 
 
 # -- General configuration ---------------------------------------------------
