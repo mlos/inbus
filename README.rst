@@ -1,7 +1,7 @@
 Inbus
 =====
 
-.. image:: https://readthedocs.org/projects/inbus/badge/?version=stable
+.. image:: https://readthedocs.org/projects/inbus/badge/?version=latest
    :target: https://github.com/mlos/inbus
    :alt: Documentation Status
 
