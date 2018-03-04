@@ -1,6 +1,6 @@
-================================
-``inbus`` : a simple message bus
-================================
+============================
+Inbus : a simple message bus
+============================
 
 Release |release| (:doc:`What's new? <changelog>`).
 
