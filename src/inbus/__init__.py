@@ -3,7 +3,7 @@
 # Copyright (c) 2017 Maarten Los
 # See LICENSE.rst for details.
 
-__version__ = "1.0.2"
+__version__ = "1.0.3"
 
 __title__ = "inbus"
 __description__ = "Simple UDP based message bus"
