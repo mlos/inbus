@@ -2,8 +2,8 @@
 Protocol
 ========
 
-**NOTE** Use of the words, must, should, could, etc. adheres to the best practice
-suggested in RFC2119 (https://www.ietf.org/rfc/rfc2119.txt)
+**NOTE** Use of the words, must, should, could, etc. adheres to the best practices
+suggested in RFC2119 (https://www.ietf.org/rfc/rfc2119.txt).
 
 -----------
 Description
@@ -32,7 +32,7 @@ depending on the data type.
     MUST be 1.
 
 ``<opcode>`` 
-    Integer specifying the type of message
+    Integer specifying the type of message.
 
     * 0: reserved
     * 1: subscribe
@@ -54,14 +54,18 @@ depending on the data type.
     The element only applies to *publish* messages.
 
 ``<ip-number>``
-    String containing an IP number part of the
-    subscriber address. In case of a publish message,
-    the element does not apply.
+    String containing the IP number part of the
+    subscriber address. The address identifies the subscriber.
+
+    In case of a *publish* message, the element 
+    does NOT apply.
 
 
 ``<port>``
     Integer containing the port number of the subscriber
-    address. In case of a *publish* message, the element 
+    address. The address identifies the subscriber.
+
+    In case of a *publish* message, the element 
     does NOT apply.
 
     The subscriber address, together with the ``app-key``
@@ -71,12 +75,13 @@ depending on the data type.
 ``<payload>``
     String specifying a user defined payload.
     This implies that binary data must be string-encoded.
+
     The element only applies to *publish* messages.
 
 --------------
 Infrastructure
 --------------
-The protocol SHOULD use port 7222
+The protocol SHOULD use port 7222.
 
 ----------------
 Example messages
@@ -96,7 +101,7 @@ Subscribe
     }
 
 Subscription message indicating that the subscriber wants to receive messages from an application that publishes
-messages under the "upnp" app-key.
+messages under the "upnp" app-key. The subscriber can be reached at the 127.0.0.1:3456 address.
 
 ^^^^^^^^^^^
 Unsubscribe
@@ -111,8 +116,7 @@ Unsubscribe
         "payload" : "" 
     }
 
-Message indicating that the subscriber no longer wants to receive messages from the application that publishes
-messages under the "upnp" app-key.
+Message indicating that the subscriber (reachable at the address 127.0.0.1:3456) no longer wants to receive messages from the application that publishes messages under the "upnp" app-key.
 
 ^^^^^^^
 Publish

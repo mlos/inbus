@@ -19,7 +19,7 @@ messages. It has a single goal: simple, connectionless brokering
 of messages between one or more publishers and one or more 
 subscribers.
 
-* Central broker:  no complex relationships
+* Central broker: No complex relationships
 * Limited scope: Does not try to be all things to all people
 * Connectionless: No flow control, no guaranteed message delivery 
 * Simple JSON based protocol
