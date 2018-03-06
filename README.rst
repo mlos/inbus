@@ -2,7 +2,7 @@ Inbus
 =====
 
 .. image:: https://readthedocs.org/projects/inbus/badge/?version=latest
-   :target: https://github.com/mlos/inbus
+   :target: http://inbus.readthedocs.io/en/latest/
    :alt: Documentation Status
 
 .. image:: https://travis-ci.org/mlos/inbus.svg?branch=master
