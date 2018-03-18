@@ -3,7 +3,7 @@ Inbus
 
 .. image:: https://github.com/mlos/inbus/blob/master/docs/_static/inbus-logo.png
    :alt: Inbus Logo
-   :scale: 50 %
+   :scale: 20 %
 
 
 .. image:: https://readthedocs.org/projects/inbus/badge/?version=latest
