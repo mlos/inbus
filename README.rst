@@ -1,6 +1,11 @@
 Inbus
 =====
 
+.. image:: https://github.com/mlos/inbus/blob/master/docs/_static/inbus-logo.png
+   :alt: Inbus Logo
+   :scale: 50 %
+
+
 .. image:: https://readthedocs.org/projects/inbus/badge/?version=latest
    :target: http://inbus.readthedocs.io/en/latest/
    :alt: Documentation Status
@@ -11,7 +16,7 @@ Inbus
 .. image:: https://codecov.io/gh/mlos/inbus/branch/master/graph/badge.svg
   :target: https://codecov.io/gh/mlos/inbus
 
-.. teaser-begin
+.. -readme-start-
 
 **inbus** stands for **in**\ connu message **bus** and is targeted at small
 devices running a limited number of applications exchanging small
@@ -24,5 +29,5 @@ subscribers.
 * Connectionless: No flow control, no guaranteed message delivery 
 * Simple JSON based protocol
 
-.. -spiel-end-
+.. -readme-end-
 
