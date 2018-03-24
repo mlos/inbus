@@ -2,7 +2,16 @@
 Protocol
 ========
 
-**NOTE** Use of the words, must, should, could, etc. adheres to the best practices
+-------
+Version
+-------
+This document describes *version 1* of the protocol.
+
+-----------
+Terminology
+-----------
+
+Use of the words, must, should, could, etc. adheres to the best practices
 suggested in RFC2119 (https://www.ietf.org/rfc/rfc2119.txt).
 
 -----------
@@ -77,6 +86,8 @@ depending on the data type.
     This implies that binary data must be string-encoded.
 
     The element only applies to *publish* messages.
+
+    The payload MUST not be a JSON string.
 
 --------------
 Infrastructure
