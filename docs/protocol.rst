@@ -5,18 +5,32 @@ Protocol
 -------
 Version
 -------
-This document describes *version 1* of the protocol.
+This document describes the Inbus protocol up to *Version 2*
+
+History
+#######
+
+======= ====================== ========
+Version Description            Date
+======= ====================== ========
+v1      Initial version        Nov 2017
+v2      Payload must be base64 Mar 2018
+======= ====================== ========
 
 -----------
 Terminology
 -----------
 
 Use of the words, must, should, could, etc. adheres to the best practices
-suggested in RFC2119 (https://www.ietf.org/rfc/rfc2119.txt).
+suggested in `RFC2119 <http://www.ietf.org/rfc/rfc2119.txt>`_.
+
+Version info is **[marked in bold between square brackets]**
 
 -----------
 Description
 -----------
+
+**[Unless otherwise specified, no changes have been made in v2]**
 
 Protocol messages MUST be specified in the following JSON format:
 
@@ -36,9 +50,11 @@ Elements that do not apply to a particular type of message (as
 defined by its ``<opcode>``), SHOULD be an empty string or zero,
 depending on the data type.
 
+**[increased with each new protocol version]**
+
 ``<inbus-version>``
     Integer specifying the Inbus protocol version.
-    MUST be 1.
+    MUST be 2.
 
 ``<opcode>`` 
     Integer specifying the type of message.
@@ -87,7 +103,9 @@ depending on the data type.
 
     The element only applies to *publish* messages.
 
-    The payload MUST not be a JSON string.
+    **[since v2:]**
+
+    The payload MUST be `base64 <https://tools.ietf.org/html/rfc4648>`_ encoded.
 
 --------------
 Infrastructure
@@ -104,7 +122,7 @@ Subscribe
 
 .. code-block:: console
 
-    {   "version" : 1 ,
+    {   "version" : 2 ,
         "opcode" : 1, 
         "application" : [ "upnp", 0 ],
         "address" : [ "127.0.0.1", 3456 ],
@@ -120,7 +138,7 @@ Unsubscribe
 
 .. code-block:: console
 
-    {   "version" : 1 ,
+    {   "version" : 2 ,
         "opcode" : 2,
         "application" : [ "upnp", 0 ],
         "address" : [ "127.0.0.1", 3456 ],
@@ -133,6 +151,8 @@ Message indicating that the subscriber (reachable at the address 127.0.0.1:3456)
 Publish
 ^^^^^^^
 
+**[In v1, the message looks like:]**
+
 .. code-block:: console
 
     {   "version" : 1 ,
@@ -143,3 +163,14 @@ Publish
     }
 
 Message sent by the application using the app-key "upnp", using app-type 17. 
+
+**[In v2, the message looks like:]**
+
+.. code-block:: console
+
+    {   "version" : 2 ,
+        "opcode" : 3,
+        "application" : [ "upnp", 17 ],
+        "address" : [ "", 0 ],
+        "payload" : "T21lZ2EgLSBHYW1tYXBvbGlzIEkuIC0gMDo0NQo="
+    }
