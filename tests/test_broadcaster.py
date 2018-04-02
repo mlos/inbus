@@ -27,7 +27,7 @@ def test_broadcaster_with_two_subscribers_for_app_should_call_send_twice(mock_re
     mock_registry.subscribers.return_value = [ ("address", "app"), ("address-2", "app") ]
     b = Broadcaster(mock_registry, mock_sender)
 
-    b.publish("app", "some-payload")
+    b.publish("app", "some-payload", 2)
 
     mock_sender.send.assert_called()
     assert mock_sender.send.call_count == 2

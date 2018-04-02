@@ -82,4 +82,4 @@ def test_registry_unsubscribing_non_existing_subscribers_does_not_affeect_subscr
 
 def test_registry_publish_method_should_not_raise_error():
     r = Registry()
-    r.publish("dummy-app", "dummy-payload")
+    r.publish("dummy-app", "dummy-payload", 1)

@@ -28,7 +28,7 @@ def test_message_sender_without_socket_should_raise_error(mock_outgoing_message_
 @patch("socket.socket")
 def test_message_sender_send_should_call_translate_and_socket_send(mock_outgoing_message_translator, mock_socket):
     ms = MessageSender(mock_outgoing_message_translator, mock_socket)
-    ms.send("some-address", "some-app", "some-payload")
+    ms.send("some-address", "some-app", "some-payload", 2)
     mock_outgoing_message_translator.translate.assert_called()
     mock_socket.sendto.assert_called()
 
@@ -38,5 +38,5 @@ def test_message_sender_send_should_call_translate_and_socket_send(mock_outgoing
 def test_message_sender_send_should_hide_socket_send_error(mock_outgoing_message_translator, mock_socket):
     ms = MessageSender(mock_outgoing_message_translator, mock_socket)
     mock_socket.sendto.side_effect = socket.error
-    ms.send("some-address", "some-app", "some-payload")
+    ms.send("some-address", "some-app", "some-payload", 2)
 
