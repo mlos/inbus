@@ -3,7 +3,7 @@
 # Copyright (c) 2017 Maarten Los
 # See LICENSE.rst for details.
 
-__version__ = "1.0.3"
+__version__ = "1.1.0"
 
 __title__ = "inbus"
 __description__ = "Simple UDP based message bus"
@@ -14,4 +14,4 @@ __author__ = "Maarten Los"
 __email__ = "mlos@gmx.com"
 
 __license__ = "BSD 2-Clause license"
-__copyright__ = "Copyright (c) 2017 Maarten Los"
+__copyright__ = "Copyright (c) 2017, 2018 Maarten Los"

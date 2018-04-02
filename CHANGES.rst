@@ -8,4 +8,5 @@ ChangeLog
 | **1.0.1**  | * Fixed broadcast bug                         | 21-Dec-2018   |
 | **1.0.2**  | * Include this changelog in package           | 21-Feb-2018   |
 | **1.0.3**  | * Public release on PyPI                      | 04-Mar-2018   |
+| **1.1.0**  | * Support for Protocol v2                     | 02-Apr-2018   |
 +------------+-----------------------------------------------+---------------+
