@@ -23,7 +23,7 @@ class Registry(InbusMethodObserver):
                 if (address != s[0]) and (application != s[1])
                 ]
 
-    def publish(self, application, payload):
+    def publish(self, application, payload, version):
         pass
 
     def subscribers(self):

@@ -6,6 +6,7 @@
 import json
 
 from ..shared.opcode import Opcode
+from ..shared.defaults import Defaults
 
 
 class IncomingMessageTranslator(object):
@@ -30,6 +31,7 @@ class IncomingMessageTranslator(object):
             raise
 
         try:
+            version = message["version"]
             opcode = message["opcode"]
             application = message["application"]
             address = message["address"]
@@ -37,10 +39,14 @@ class IncomingMessageTranslator(object):
         except KeyError:
             raise ValueError
 
+        if version > Defaults.INBUS_VERSION:
+            # TODO: log something
+            return
+
         for i in self._inbus_method_observers:
             if opcode == Opcode.SUBSCRIBE:
                 i.subscribe(address, application)
             elif opcode == Opcode.UNSUBSCRIBE:
                 i.unsubscribe(address, application)
             elif opcode == Opcode.PUBLISH:
-                i.publish(application, payload)
+                i.publish(application, payload, version)

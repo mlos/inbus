@@ -26,9 +26,10 @@ class Broadcaster(InbusMethodObserver):
     def unsubscribe(self, address, application):
         pass
 
-    def publish(self, application, payload):
+    def publish(self, application, payload, version):
         subscribers = self._registry.subscribers()
-        addresses = [tuple(s[0]) for s in subscribers if s[1][0] == application[0]]
+        addresses = [tuple(s[0]) for s in subscribers
+                     if s[1][0] == application[0]]
 
         for addr in addresses:
-            self._message_sender.send(addr, application, payload)
+            self._message_sender.send(addr, application, payload, version)

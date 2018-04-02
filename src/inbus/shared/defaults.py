@@ -5,7 +5,7 @@
 
 
 class Defaults(object):
-    INBUS_VERSION = 1
+    INBUS_VERSION = 2
     LOCALHOST = "127.0.0.1"
     PORT = 7222
     INBUS_ADDRESS = (LOCALHOST, PORT)

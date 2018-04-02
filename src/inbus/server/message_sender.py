@@ -20,9 +20,9 @@ class MessageSender(object):
         self._outgoing_message_translator = outgoing_message_translator
         self._socket = socket
 
-    def send(self, address, application, payload):
+    def send(self, address, application, payload, version):
         translated_message = self._outgoing_message_translator.translate(
-                application, payload)
+                application, payload, version)
         try:
             self._socket.sendto(translated_message, address)
         except socket.error:

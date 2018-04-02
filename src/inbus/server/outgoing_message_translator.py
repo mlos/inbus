@@ -5,7 +5,6 @@
 
 import json
 
-from ..shared.defaults import Defaults
 from ..shared.opcode import Opcode
 
 
@@ -16,8 +15,8 @@ class OutgoingMessageTranslator(object):
     def __init__(self):
         pass
 
-    def translate(self, application, payload):
-        return json.dumps({'version': Defaults.INBUS_VERSION,
+    def translate(self, application, payload, version):
+        return json.dumps({'version': version,
                            'opcode': Opcode.PUBLISH,
                            'application': application,
                            'payload': payload})
