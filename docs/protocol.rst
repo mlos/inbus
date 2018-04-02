@@ -112,6 +112,14 @@ Infrastructure
 --------------
 The protocol SHOULD use port 7222.
 
+------------------------
+Version Interoperability
+------------------------
+Inbus server implementations MUST guarantee that messages published using a certain protocol version are also distributed to
+the subscribers using that same protocol version. 
+
+Inbus server implementations MUST reject messages of unknown protocol versions.
+
 ----------------
 Example messages
 ----------------
