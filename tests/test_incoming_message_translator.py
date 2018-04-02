@@ -69,6 +69,12 @@ def test_incoming_message_translator_publication_with_incorrect_version_should_b
     mock_observer.publish.assert_not_called()
 
 @patch("inbus.server.inbus_method_observer.InbusMethodObserver")
+def test_incoming_message_translator_incomprehensible_message_should_raise_error(mock_observer):
+    i = IncomingMessageTranslator([mock_observer])
+    with pytest.raises(ValueError):
+        i.translate("utter garbage")
+
+@patch("inbus.server.inbus_method_observer.InbusMethodObserver")
 def test_incoming_message_translator_json_message_without_opcode_key_should_raise_error(mock_observer):
     i = IncomingMessageTranslator([mock_observer])
     with pytest.raises(ValueError):
