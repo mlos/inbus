@@ -26,4 +26,8 @@ class Inbus(object):
 
     def run(self):
         while True:
-            self._message_receiver.wait_and_process_message()
+            try:
+                self._message_receiver.wait_and_process_message()
+            except:
+                # TODO: logging
+                pass
